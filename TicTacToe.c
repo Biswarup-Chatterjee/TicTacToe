@@ -33,12 +33,6 @@ void main(){
         printf("Select from the given options\n----------------------------------\n");
         main();
     }
-        
-
-    
-
-    
-    
     while(1){
 
 
@@ -67,7 +61,11 @@ void main(){
             break;
         }
         else if(vct(brd,plr,com) == 0){
-            printf("Player lost !\n");
+            printf("Player lost!\n");
+            break;
+        }
+        else if(vct(brd,plr,com) == 2){
+            printf("It's a Tie!");
             break;
         }
 
@@ -104,6 +102,7 @@ void display(char brd[][3]){
 
 int vct(char brd[][3], char plr, char com){
 
+    int d = 1;
     for(int i=0; i<3; i++){
         int s1 = 0, s2 = 0, s3 = 0, s4 = 0;
         for(int j=0; j<3; j++){
@@ -111,10 +110,16 @@ int vct(char brd[][3], char plr, char com){
             s2 += brd[j][i];
             s3 += brd[j][j];
             s4 += brd[2-j][j];
+
+            if(brd[i][j] == ' ')
+                d = 0;
         }
         if(s1 == plr*3 || s2 == plr*3 || s3 == plr*3 || s4 == plr*3)
             return 1;
     }
+
+    if(d == 1)
+        return 2;
 
     for(int i=0; i<3; i++){
         int s1 = 0, s2 = 0, s3 = 0, s4 = 0;
